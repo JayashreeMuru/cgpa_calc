@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type='text/javascript'>
+        function addFields(){
+            // Number of inputs to create
+            var number = document.getElementById("mark").value;
+            // Container <div> where dynamic content will be placed
+            var container = document.getElementById("container");
+            // Clear previous contents of the container
+            while (container.hasChildNodes()) {
+                container.removeChild(container.lastChild);
+            }
+            for (i=0;i<number;i++){
+                // Append a node with a random text
+                container.appendChild(document.createTextNode("mark " + (i+1)));
+                // Create an <input> element, set its type and name attributes
+                var input = document.createElement("input");
+                input.type = "text";
+                input.name = "mark" + i;
+                input.id = "mark" + i;
+		input.pattern="[0-9]";
+		
+                container.appendChild(input);
+                // Append a line break 
+                container.appendChild(document.createElement("br"));
+            }
+        }
+
+	function addMarks()
+	{
+		
+		//var mark1value = document.getElementById("mark0").value;
+		var number = document.getElementById("mark").value;	
+		var sum = 0
+		var avg = 0
+		var cgpa = "A+"
+		for (i = 0; i<number ;i++)
+		{
+			sum = sum + Number(document.getElementById("mark"+i).value);
+		}
+		avg = sum / number
+		alert(sum);
+		alert(avg);
+		if (avg>=90 && avg<=100)
+		{
+			cgpa = "A+";
+		}
+		else if(avg >=70 && avg<= 89)
+		{
+			cgpa = "A";
+		}
+		else if(avg >=50 && avg<= 69)
+		{
+			cgpa = "B+";
+		}
+		else if(avg >=40 && avg<= 49)
+		{
+			cgpa = "C";
+		}
+
+		else if(avg >=0 && avg<= 40)
+		{
+			cgpa = "F";
+		}
+		alert (cgpa);
+	}
+    </script>
+</head>
+<body>
+    Number of subjects: <input type="text" id="mark" name="mark" value=""><br />
+    <a href="#" id="filldetails" onclick="addFields()">Enter marks</a>
+    <div id="container"/>
+    </div>
+    <div>
+    <a href="#" id="calculate" onclick="addMarks()">Calculate CGPA</a>
+    </div>
+
+</body>
+</html>
